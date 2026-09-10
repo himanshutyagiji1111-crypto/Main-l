@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday My Love! 💖 | Romantic Birthday Celebration</title>
+  <meta name="description" content="A magical, interactive birthday wish celebration with candle blowing, cake cutting, romantic music box, and love notes.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Particle & Fireworks Canvas Layer -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Top Bar Controls -->
+  <header class="top-bar">
+    <div class="brand-badge">For My Angel 👑</div>
+    <div class="nav-controls">
+      <button class="icon-btn" id="customize-btn" title="Personalize Wishes">✏️</button>
+      <button class="icon-btn" id="music-toggle-btn" title="Toggle Music">🎵</button>
+    </div>
+  </header>
+
+  <!-- Main Multi-Scene App Container -->
+  <main class="app-container">
+
+    <!-- SCENE 1: Sealed Romantic Envelope -->
+    <section id="scene-1" class="scene active">
+      <h1 class="glowing-title">A Special Surprise</h1>
+      <p class="subtitle">Just for you on your special day...</p>
+
+      <div class="envelope-wrapper" id="envelope">
+        <div class="envelope">
+          <div class="envelope-flap"></div>
+          <div class="wax-seal">💌</div>
+          <div class="letter-preview">Open My Heart</div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="open-card-btn">
+        <span>Open Birthday Card</span>
+        <span>✨</span>
+      </button>
+    </section>
+
+    <!-- SCENE 2: Interactive Birthday Cake & Candle Blowing -->
+    <section id="scene-2" class="scene">
+      <h2 class="glowing-title">Make A Birthday Wish! 🎂</h2>
+      <p class="subtitle">Blow out the candles on your cake...</p>
+
+      <div class="cake-stage">
+        <div class="cake-body">
+          <div class="candles-row">
+            <div class="candle"><div class="flame" id="flame-1"></div></div>
+            <div class="candle"><div class="flame" id="flame-2"></div></div>
+            <div class="candle"><div class="flame" id="flame-3"></div></div>
+          </div>
+          <div class="cake-tier-top">
+            <div class="drip-container"></div>
+          </div>
+          <div class="cake-tier-bottom">
+            <div class="drip-container"></div>
+          </div>
+        </div>
+        <div class="cake-stand"></div>
+      </div>
+
+      <div class="blow-meter-box">
+        <div id="meter-status" style="font-weight: 600; color: var(--accent-blush);">
+          Blow into your mic or tap the button below! 🌬️
+        </div>
+        <div class="meter-bar-track">
+          <div class="meter-bar-fill" id="meter-fill"></div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+        <button class="btn-primary" id="blow-btn">
+          <span>Blow Candles 🌬️</span>
+        </button>
+        <button class="btn-secondary" id="mic-btn">
+          <span>🎤 Enable Mic Blow</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCENE 3: Interactive Cake Cutting -->
+    <section id="scene-3" class="scene">
+      <h2 class="glowing-title">Time To Cut The Cake! 🔪🎂</h2>
+      <p class="subtitle">Drag the knife down to cut your slice...</p>
+
+      <div class="cutting-stage">
+        <div class="cake-cut-overlay">
+          <!-- Main Cake Body -->
+          <div class="cake-body" style="transform: scale(0.95); margin: 0 auto;">
+            <div class="cake-tier-top">
+              <div class="drip-container"></div>
+            </div>
+            <div class="cake-tier-bottom">
+              <div class="drip-container"></div>
+            </div>
+          </div>
+
+          <!-- Cut Line & Separated Piece -->
+          <div class="cut-line-indicator" id="cut-line"></div>
+          <div class="sliced-piece" id="sliced-piece">
+            <div style="width: 50px; height: 110px; background: linear-gradient(180deg, #ff4081, #c2185b); border-radius: 8px; border: 1px solid var(--accent-gold); box-shadow: 0 10px 20px rgba(0,0,0,0.5);"></div>
+          </div>
+        </div>
+
+        <!-- Knife Drag Tool -->
+        <div class="knife-tool" id="knife">
+          <svg viewBox="0 0 120 40" width="120" height="40">
+            <!-- Knife Handle -->
+            <rect x="0" y="14" width="45" height="12" rx="4" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+            <!-- Knife Blade -->
+            <path d="M45,14 L110,14 C120,20 115,26 45,26 Z" fill="#e0e0e0" stroke="#b0bec5" stroke-width="1.5"/>
+            <path d="M45,15 L105,15" stroke="#ffffff" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="slice-btn" style="margin-top: 15px;">
+        <span>Slice Cake 🔪</span>
+      </button>
+    </section>
+
+    <!-- SCENE 4: Romantic Memory Gallery & Love Notes -->
+    <section id="scene-4" class="scene">
+      <h1 class="glowing-title">Happy Birthday, <span class="gf-name-target">My Love</span>! 🎉💖</h1>
+      <p class="subtitle wish-msg-target">May your day be filled with endless magic, laughter, and joy!</p>
+
+      <!-- Love Letter Section -->
+      <div class="love-letter-box">
+        <h3 style="font-family: var(--font-heading); color: var(--accent-gold); margin-bottom: 15px;">To My Favorite Person</h3>
+        <p id="letter-text-target">
+          From the moment you entered my life, every day feels brighter and more meaningful. Your sweetness, laughter, and beautiful soul bring so much warmth into my world. Today is all about celebrating YOU—the most amazing, beautiful, and loving partner anyone could ever dream of having. I love you more than words can express! Happy Birthday! 🌹✨
+        </p>
+      </div>
+
+      <!-- Polaroid Memory Gallery -->
+      <h3 style="font-family: var(--font-heading); color: var(--accent-blush); margin-top: 20px; font-size: 1.8rem;">Our Favorite Moments 📷</h3>
+      <div class="memories-grid">
+        <div class="polaroid-card">
+          <img src="assets/couple.jpg" alt="Romantic Sunset Moment" class="polaroid-img">
+          <div class="polaroid-caption">Golden Moments with You 🌅</div>
+        </div>
+        <div class="polaroid-card">
+          <img src="assets/cake.jpg" alt="Birthday Cake Celebration" class="polaroid-img">
+          <div class="polaroid-caption">A Sweet Day for Someone Sweeter 🎂</div>
+        </div>
+      </div>
+
+      <!-- Surprise Gift Box Interactivity -->
+      <h3 style="font-family: var(--font-heading); color: var(--accent-gold); margin-top: 40px; font-size: 1.8rem;">Tap Your Birthday Gifts 🎁</h3>
+      <div class="gifts-flex">
+        <div class="gift-box" title="Gift 1">🎁</div>
+        <div class="gift-box" title="Gift 2">💖</div>
+        <div class="gift-box" title="Gift 3">✨</div>
+        <div class="gift-box" title="Gift 4">👑</div>
+      </div>
+
+      <button class="btn-secondary" onclick="location.reload()" style="margin-top: 40px;">
+        <span>Replay Celebration 🔄</span>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- Personalization Modal Overlay -->
+  <div class="customizer-overlay" id="customizer-overlay">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h3 style="font-family: var(--font-heading); color: var(--accent-gold); font-size: 1.4rem;">Personalize Celebration ✏️</h3>
+      <button id="close-customizer-btn" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">✕</button>
+    </div>
+
+    <form id="customizer-form">
+      <div class="form-group">
+        <label for="gf-name-input">Girlfriend's Name / Nickname</label>
+        <input type="text" id="gf-name-input" class="form-control" placeholder="e.g. My Princess, Angel, Sophia" value="My Love">
+      </div>
+
+      <div class="form-group">
+        <label for="wish-msg-input">Short Birthday Subtitle Wish</label>
+        <input type="text" id="wish-msg-input" class="form-control" placeholder="e.g. Wishing you the happiest birthday ever!" value="May your day be filled with endless magic, laughter, and joy!">
+      </div>
+
+      <div class="form-group">
+        <label for="letter-text-input">Love Letter Message</label>
+        <textarea id="letter-text-input" class="form-control" rows="5" placeholder="Write your heartfelt message here...">From the moment you entered my life, every day feels brighter and more meaningful. Your sweetness, laughter, and beautiful soul bring so much warmth into my world. Today is all about celebrating YOU—the most amazing, beautiful, and loving partner anyone could ever dream of having. I love you more than words can express! Happy Birthday! 🌹✨</textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+        <span>Save Personalization 💖</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/particles.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/candle-blow.js"></script>
+  <script src="js/cake-cutting.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
